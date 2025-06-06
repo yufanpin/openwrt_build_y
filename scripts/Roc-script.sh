@@ -16,6 +16,12 @@ rm -rf feeds/packages/net/ariang
 rm -rf feeds/packages/lang/golang
 rm -rf package/emortal/luci-app-athena-led
 
+
+
+
+#添加kiddin9的软件源
+echo 'src-git kiddin9 https://github.com/kiddin9/kwrt-packages.git' >>feeds.conf.default
+
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
   branch="$1" repourl="$2" && shift 2
@@ -39,8 +45,7 @@ git clone --depth=1 https://github.com/NONGFAH/luci-app-athena-led package/luci-
 chmod +x package/luci-app-athena-led/root/etc/init.d/athena_led package/luci-app-athena-led/root/usr/sbin/athena-led
 
 
-#添加kiddin9的软件源
-echo 'src-git kiddin9 https://github.com/kiddin9/kwrt-packages.git' >>feeds.conf.default
+
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
